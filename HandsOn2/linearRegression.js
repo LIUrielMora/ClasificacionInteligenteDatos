@@ -24,18 +24,62 @@ class LinearRegression {
         return parseFloat(b1.toFixed(2));
     }
 
+    calculateCorrelationCoefficient() {
+        const r = this.nSumXYRestSumXSumY / Math.sqrt(this.n * this.sumXSquared * this.nSumXSquaredRestSumXSumX);
+        return parseFloat(r.toFixed(2));
+    }
+
+    calculateCoefficientOfDetermination() {
+        const rSquared = Math.pow(this.calculateCorrelationCoefficient(), 2);
+        return parseFloat(rSquared.toFixed(2));
+    }
+
     predictY(x) {
         const b0 = this.calculateB0();
         const b1 = this.calculateB1();
         const y = b0 + b1 * x;
+        console.log("Y = " + b0 + " + (" + b1 + ")" + x)
         return parseFloat(y.toFixed(2));
     }
 
     main() {
-        const x = 62;
-        const prediction = this.predictY(x);
-        console.log("Se hará la predicción para X =", x);
-        console.log("Resultado: Y =", prediction);
+        console.log(" ---- Coeficiente de correlación -------");
+        const correlationCoefficient =  this.calculateCorrelationCoefficient()
+        console.log(correlationCoefficient);
+
+        console.log(" ---- Coeficiente de determinación -------");
+        const coefficientOfDetermination =  this.calculateCoefficientOfDetermination()
+        console.log(coefficientOfDetermination);
+
+        console.log("1) ---- Predicción -------");
+        const x1 = 62;
+        const prediction1 = this.predictY(x1);
+        console.log("Se hará la predicción para X =", x1);
+        console.log("Resultado: Y =", prediction1);
+
+        console.log("2) ---- Predicción -------");
+        const x2 = 70;
+        const prediction2 = this.predictY(x2);
+        console.log("Se hará la predicción para X =", x2);
+        console.log("Resultado: Y =", prediction2);
+
+        console.log("3) ---- Predicción -------");
+        const x3 = 82;
+        const prediction3 = this.predictY(x3);
+        console.log("Se hará la predicción para X =", x3);
+        console.log("Resultado: Y =", prediction3);
+
+        console.log("4) ---- Predicción -------");
+        const x4 = 95;
+        const prediction4 = this.predictY(x4);
+        console.log("Se hará la predicción para X =", x4);
+        console.log("Resultado: Y =", prediction4);
+
+        console.log("5) ---- Predicción -------");
+        const x5 = 115;
+        const prediction5 = this.predictY(x5);
+        console.log("Se hará la predicción para X =", x5);
+        console.log("Resultado: Y =", prediction5);
     }
 }
 
